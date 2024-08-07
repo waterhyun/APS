@@ -1,4 +1,4 @@
-# 빙고
+# 빙고, 실버 4
 arr = [list(map(int, input().split())) for _ in range(5)]
 numbers = []
 for _ in range(5):
