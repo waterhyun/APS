@@ -1,3 +1,19 @@
+# 돌을 놓는 함수
+def place_stone(x, y, c):
+    global grid, dx, dy
+    grid[x][y] = c
+    for d in range(8):
+        nx, ny = x + dx[d], y + dy[d]
+        stones_to_flip = []
+        while 0 <= nx < n and 0 <= ny < n and grid[nx][ny] == 3 - c:
+            stones_to_flip.append((nx, ny))
+            nx += dx[d]
+            ny += dy[d]
+        if 0 <= nx < n and 0 <= ny < n and grid[nx][ny] == c:
+            for fx, fy in stones_to_flip:
+                grid[fx][fy] = c
+
+
 tc = int(input())
 for t in range(1, tc+1):
     n, m = map(int,input().split())
@@ -7,20 +23,6 @@ for t in range(1, tc+1):
 
     dx = [0, 0, 1, -1, 1, -1, -1, 1]
     dy = [1, -1, 0, 0, 1, -1, 1, -1]
-
-    # 돌을 놓는 함수
-    def place_stone(x, y, c):
-        grid[x][y] = c
-        for d in range(8):
-            nx, ny = x + dx[d], y + dy[d]
-            stones_to_flip = []
-            while 0 <= nx < n and 0 <= ny < n and grid[nx][ny] == 3 - c:
-                stones_to_flip.append((nx, ny))
-                nx += dx[d]
-                ny += dy[d]
-            if 0 <= nx < n and 0 <= ny < n and grid[nx][ny] == c:
-                for fx, fy in stones_to_flip:
-                    grid[fx][fy] = c
 
     for turn in range(m):
         x, y, c = map(int, input().split())
