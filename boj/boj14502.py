@@ -3,22 +3,51 @@
 import sys
 sys.stdin = open('boj/input.txt', 'r')
 
+from itertools import combinations
+from collections import deque
+
+def virus_diffusion(grid_case, virus_position):
+    directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+
+    queue = deque(virus_position)
+
+    # BFS 시작
+    while queue:
+        x, y = queue.popleft()
+        
+        for dx, dy in directions:
+            nx = x + dx
+            ny = y + dy
+            
+            # 유효한 위치인지 확인
+            if 0 <= nx < N and 0 <= ny < M:
+                # `0`인 경우만 `2`로 바꾸고 큐에 추가
+                if grid_case[nx][ny] == 0:
+                    grid_case[nx][ny] = 2
+                    queue.append((nx, ny))
+    
+    return grid_case
+                
+            
+
 N, M = map(int, input().split())
+null_space = []
 virus_position = []
 grid = []
 for i in range(N):
     arr = list(map(int, input().split()))
-    for j in range(M):
-        if arr[j] == 2:
-            virus_position.append((i, j))
+    virus_position += [(i, j) for j in range(M) if arr[j] == 2]
+    null_space += [(i, j) for j in range(M) if arr[j] == 0]
     grid.append(arr)
 
-# 세워야 하는 벽 3개
-wall = 3
 
-for i, j in virus_position:
-    for di, dj in [(0, 1), (1, 0), (0, -1), (-1, 0)]:
-        ni = i + di
-        nj = j + dj
-        if 0 <= ni < N and 0 <= nj < M and grid[ni][nj] == 0:
-            
+wall_sets = combinations(null_space, 3)
+max_value = 0
+
+for wall in wall_sets:p
+    grid_case = [g[:] for g in grid]
+    for wall_i, wall_j in wall:
+        grid_case[wall_i][wall_j] = 1
+    
+    max_value = max(sum(virus.count(0) for virus in virus_diffusion(grid_case, virus_position)), max_value)
+print(max_value)
