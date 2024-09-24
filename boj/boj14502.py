@@ -44,7 +44,7 @@ for i in range(N):
 wall_sets = combinations(null_space, 3)
 max_value = 0
 
-for wall in wall_sets:p
+for wall in wall_sets:
     grid_case = [g[:] for g in grid]
     for wall_i, wall_j in wall:
         grid_case[wall_i][wall_j] = 1
