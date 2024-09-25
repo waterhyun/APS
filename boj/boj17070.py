@@ -29,16 +29,19 @@ def func(N, house):
             if house[i][j] == 1:  # 벽인 경우 건너뛰기
                 continue
             
-            # 가로 방향
+            # 가로 방향으로 올 수 있는 경우의 수
             if j > 1 and house[i][j-1] == 0:
+                # 이전 칸의 가로, 대각선의 경우의 수를 합한 값
                 dp[i][j][0] += dp[i][j-1][0] + dp[i][j-1][2]
             
-            # 세로 방향
+            # 세로 방향으로 올 수 있는 경우의 수
             if i > 1 and house[i-1][j] == 0:
+                # 이전 칸의 세로, 대각선의 경우의 수를 합한 값
                 dp[i][j][1] += dp[i-1][j][1] + dp[i-1][j][2]
             
-            # 대각선 방향
+            # 대각선 방향으로 올 수 있는 경우의 수
             if i > 1 and j > 1 and house[i-1][j] == 0 and house[i][j-1] == 0 and house[i-1][j-1] == 0:
+                # 가로, 세로, 대각선의 경우의 수를 합한 값
                 dp[i][j][2] += dp[i-1][j-1][0] + dp[i-1][j-1][1] + dp[i-1][j-1][2]
     
     return sum(dp[N][N])
