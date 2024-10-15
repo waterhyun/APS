@@ -15,7 +15,7 @@ def prim(graph, start):
     # pq = [(0, 1)] # cost, node  # 시작점의 가중치는 0, 1번 노드부터 시작
     edges = [(cost, start, to) for to, cost in graph[start].items()]
     heapq.heapify(edges)
-    print(f'edges: {edges}')
+    # print(f'edges: {edges}')
 
     # while edges:
     #     cost, node = heapq.heappop(pq)
@@ -73,7 +73,7 @@ for _ in range(M):
     graph[to][start] = cost
     total_cost += cost  # 도로 다 설치할 때 드는 비용
 
-print(graph)
+# print(graph)
 
 # min_cost = prim(graph, N)
 min_cost = prim(graph, 1)
