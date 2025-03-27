@@ -1,9 +1,5 @@
 # 섬의 개수
 # import sys
-# input = sys.stdin.readline
-
-
-# import sys
 # sys.setrecursionlimit(10**6)  # 재귀 깊이 증가
 
 directions = [(0, 1), (1, 0), (-1, 0), (0, -1),
@@ -37,8 +33,4 @@ while True:
                 cnt += 1  # 새로운 섬을 찾았으므로 증가
 
     print(f'resullt: {cnt}')
-
-
-
-
 
